@@ -38,10 +38,13 @@ export const Content = () => {
           synopsis={movie.synopsis}
           description={!movie.description?"No hay descripción": movie.description}
           staff = {movie.staffList}
-          image={!movie.image
-            ?"https://picsum.photos/seed/picsum/200/300"
-            :movie.image}
-        ></Card>
+          image={
+              !movie.imageLink
+                ?"https://picsum.photos/seed/picsum/200/300"
+                :movie.imageLink
+          }
+          id={movie.id}
+        />
       ))}
     </div>
   );
