@@ -30,7 +30,7 @@ export const Content = () => {
   }
 
   return (
-    <div className="flex">
+    <div className="row">
       {movies.map((movie, idx) => (
         <Card
           key={idx}

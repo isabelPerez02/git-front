@@ -2,6 +2,12 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./TopMenu.css";
 
+import Nav from 'react-bootstrap/Nav';
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import Container from 'react-bootstrap/Container';
+
+
 export const TopMenu = () => {
   const [categories, setCategories] = useState([]);
 
@@ -24,7 +30,7 @@ export const TopMenu = () => {
     "Mi cuenta",
   ];
 
-  const subMenu = () => (
+  const classSubMenu = () => (
     <div className="navbar">
       <Link to="/">Inicio</Link>
       <div className="subnav">
@@ -64,5 +70,43 @@ export const TopMenu = () => {
     </div>
   );
 
-  return subMenu();
+  const bootstrapMenu=()=>(
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Container>
+      <Navbar.Brand href="#home">DINO-Peliculas</Navbar.Brand>
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav className="me-auto">
+          <Nav.Link href="#home">
+              <Link to="/">Inicio</Link>
+          </Nav.Link>
+          <NavDropdown title="Categories" id="collasible-nav-dropdown">
+              {categories.map((item, idx) => (
+               <NavDropdown.Item>
+                <Link key={idx} to={`/category/${item.name}`}>
+                {item.name}
+              </Link>
+              </NavDropdown.Item>
+            ))}
+          </NavDropdown>
+          <Nav.Link >
+              <Link to={`/category/`}> Más vistas</Link>
+          </Nav.Link>
+          <Nav.Link >
+              <Link to={`/view/`}> Mis Listas</Link>
+          </Nav.Link>
+          <Nav.Link >
+              <Link to={`/scores/`}> Mis calificados</Link>
+          </Nav.Link>
+          <Nav.Link>
+             <Link to={`/account/`}> Mi cuenta</Link>
+          </Nav.Link>
+        </Nav>
+        
+      </Navbar.Collapse>
+    </Container>
+  </Navbar>
+  );
+
+  return bootstrapMenu();
 };
