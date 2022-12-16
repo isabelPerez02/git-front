@@ -1,33 +1,32 @@
 import "./Content.css";
 import { Card } from "../card/Card";
 import { useEffect, useState } from "react";
+import { API_URL } from "../../util/Util";
 
 export const Content = () => {
+  const [movies, setMovies] = useState([]);
 
-  const [movies, setMovies] = useState([])
-
-  useEffect(()=>{
+  useEffect(() => {
     console.log("Hola");
     getMovies();
-   //getMoviesAsync();
-  }, [])
+    //getMoviesAsync();
+  }, []);
 
-  const getMovies=()=> {
-    fetch("http://localhost:8080/api/movie")
-    .then(response => response.json())
-    .then(response =>{
-      console.log(response);
-      setMovies(response);
-    })
-  }
+  const getMovies = () => {
+    fetch(API_URL + "movie")
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
+        setMovies(response);
+      });
+  };
 
   //otra forma, PENDIENTE
-  const getMoviesAsync = async() => {
-    let response = await fetch("http://localhost:8080/api/movie");
+  const getMoviesAsync = async () => {
+    let response = await fetch(API_URL + "movie");
     response = await response.json();
     setMovies(response);
-
-  }
+  };
 
   return (
     <div className="row">
@@ -36,12 +35,14 @@ export const Content = () => {
           key={idx}
           name={movie.name}
           synopsis={movie.synopsis}
-          description={!movie.description?"No hay descripción": movie.description}
-          staff = {movie.staffList}
+          description={
+            !movie.description ? "No hay descripción" : movie.description
+          }
+          staff={movie.staffList}
           image={
-              !movie.imageLink
-                ?"https://picsum.photos/seed/picsum/200/300"
-                :movie.imageLink
+            !movie.imageLink
+              ? "https://picsum.photos/seed/picsum/200/300"
+              : movie.imageLink
           }
           id={movie.id}
         />
