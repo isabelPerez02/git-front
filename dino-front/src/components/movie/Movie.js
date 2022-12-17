@@ -1,8 +1,7 @@
-import { API_URL, getToken } from "../../util/Util";
+import { API_URL, getToken, showMessage } from "../../util/Util";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./Movie.css";
-import Swal from "sweetalert2";
 
 export const Movie = () => {
   const params = useParams();
@@ -11,13 +10,22 @@ export const Movie = () => {
   const [score, setScore] = useState([]);
   const [scoreSelected, setScoreSelected] = useState("");
   const [scoreId, setScoreId] = useState("");
+  const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
     setMovieId(params.id);
     getMovie();
     setScoreData();
     checkScore();
-  }, []);
+    // checkIsInList();
+  }, [scoreSelected]);
+
+  const checkIsInList = () => {
+    //consumir el API y validar si esta activa
+
+    //si esta activa
+    setIsActive(true);
+  };
 
   const getMovie = async () => {
     let response = await fetch(API_URL + "movie/" + params.id);
@@ -47,7 +55,7 @@ export const Movie = () => {
 
   const sendScoreApi = async (score) => {
     let method = "post";
-    if (scoreSelected != "") {
+    if (scoreSelected !== "") {
       method = "put";
     }
 
@@ -66,21 +74,15 @@ export const Movie = () => {
     };
     let response = await fetch(API_URL + "score/" + scoreId, requestData);
     response = await response.json();
-    if (response.status == true) {
-      Swal.fire({
-        title: "¡Se actualizó!",
-        text: response.message,
-        icon: "success",
-        confirmButtonText: "Reintentar",
-      });
-    } else {
-      Swal.fire({
-        title: "Error!",
-        text: response.message,
-        icon: "warning",
-        confirmButtonText: "Reintentar",
-      });
+    const title = "";
+    let icon = "warning";
+    let confirmButtonText = "Reintentar";
+    if (response.status === true) {
+      icon = "success";
+      confirmButtonText = "ok";
     }
+    const message = response.message;
+    showMessage(title, message, icon, confirmButtonText);
   };
 
   const setScoreData = () => {
@@ -94,7 +96,17 @@ export const Movie = () => {
   const sendScore = async (event) => {
     const { value } = event.target;
     await sendScoreApi(value);
+    setScoreSelected(value);
     //console.log(`value`, value);
+  };
+
+  const handleAddList = () => {
+    //comunicación con backed,
+    //enviandole el id de esta pelicula y enviandole el token
+    //backend deberia tomar ese id pelicula, buscar esa pelicula en la bd,
+    // despues el usuarios
+    //deberia guardar en una entidad playliost -> id cliente, id pelicula,la fecha
+    // mensaje indicandole al usuario que ya se agregó, state, -> 1 activo, ->2 oculto
   };
 
   return (
@@ -104,7 +116,9 @@ export const Movie = () => {
         width="560"
         height="315"
         src={
-          !movie.link ? "https://www.youtube.com/embed/4Lp-Vc4i2QI" : movie.link
+          !movie.link
+            ? "https://www.youtube-nocookie.com/embed/4Lp-Vc4i2QI"
+            : movie.link
         }
         title={movie.name}
         frameBorder="0"
@@ -143,6 +157,12 @@ export const Movie = () => {
                 <option key={idx}>{element}</option>
               ))}
             </select>
+            <button
+              onClick={handleAddList}
+              className={isActive ? "active" : ""}
+            >
+              Agregar a mis lista
+            </button>
           </div>
         </div>
       </div>

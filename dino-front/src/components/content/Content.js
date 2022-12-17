@@ -7,7 +7,7 @@ export const Content = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    console.log("Hola");
+    //console.log("Hola");
     getMovies();
     //getMoviesAsync();
   }, []);
@@ -16,7 +16,7 @@ export const Content = () => {
     fetch(API_URL + "movie")
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
+        //  console.log(response);
         setMovies(response);
       });
   };
