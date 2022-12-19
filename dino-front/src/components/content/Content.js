@@ -1,10 +1,15 @@
 import "./Content.css";
 import { Card } from "../card/Card";
+import { Recommendation } from '../recommendation/Recommendation'
 import { useEffect, useState } from "react";
 import { API_URL } from "../../util/Util";
+import { HomeGenre } from "../home-genre/Home-genre";
+import { MoviesList } from "../moviesList/MoviesList";
 
 export const Content = () => {
   const [movies, setMovies] = useState([]);
+  const [movie,setMovie] = useState("");
+  const [recBackground,setRecBackground] = useState("");
 
   useEffect(() => {
     //console.log("Hola");
@@ -16,8 +21,11 @@ export const Content = () => {
     fetch(API_URL + "movie")
       .then((response) => response.json())
       .then((response) => {
-        //  console.log(response);
+        console.log(response);
         setMovies(response);
+        const recIndex = Math.floor(Math.random() * (response.length)); 
+        setMovie(response[recIndex])
+        setRecBackground(response[recIndex].imageLink)
       });
   };
 
@@ -28,8 +36,20 @@ export const Content = () => {
     setMovies(response);
   };
 
+
   return (
-    <div className="row">
+    <div className="row movies-container">
+
+    <Recommendation id={movie.id} name={movie.name} synopsis={movie.synopsis} backgroundURL={recBackground} />
+
+    <HomeGenre/>
+    
+    <MoviesList movies={movies} title={"Peliculas"} />
+
+    <div id="list"> </div>
+    <MoviesList  movies={movies} title={"Mi Lista"} />
+     
+{/* 
       {movies.map((movie, idx) => (
         <Card
           key={idx}
@@ -46,7 +66,7 @@ export const Content = () => {
           }
           id={movie.id}
         />
-      ))}
+      ))} */}
     </div>
   );
 };

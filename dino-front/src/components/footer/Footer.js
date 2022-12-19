@@ -11,9 +11,7 @@ class Footer extends React.Component {
 
   render() {
     return (
-        <div className="footer">
-            Todos los derechos reservados @2022
-        </div>
+        ""
     );
   }
 }

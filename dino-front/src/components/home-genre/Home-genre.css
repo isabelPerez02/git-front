@@ -1,0 +1,35 @@
+#home-genre-cotainer {
+  margin-bottom: 36px;
+  
+}
+
+#home-genre-cotainer .home-title {
+  font-size: 20px !important;
+  font-weight: 500;
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+#home-genre-cotainer .genres {
+  text-align: left;
+
+  display: flex;
+  flex-flow: row;
+  overflow-x: scroll;
+  max-width: 97vw;
+}
+
+#home-genre-cotainer .btn.btn-primary {
+  margin-right: 17px;
+  background: rgb(222, 63, 84);
+  background: linear-gradient(
+    128deg,
+    rgba(222, 63, 84, 1) 0%,
+    rgba(177, 55, 71, 1) 100%
+  );
+  border: none;
+  padding:12px 24px;
+  font-size: 24px;
+  font-weight: 500;
+}
+

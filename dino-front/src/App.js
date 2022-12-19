@@ -14,6 +14,7 @@ import { Movie } from "./components/movie/Movie";
 import { NotFound } from "./components/notFound/NotFound";
 import { Register } from "./components/register/Register";
 import { Sidebar } from "./components/sidebar/Sidebar";
+import { AddMovie } from "./components/addMovie/AddMovie";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/movies" element={<Content />} />
           <Route path="/" element={<Login />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/movie/add" element={<AddMovie/>}/>
         </Routes>
         <Footer />
       </Router>

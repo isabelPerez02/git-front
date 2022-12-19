@@ -110,7 +110,7 @@ export const Movie = () => {
   };
 
   return (
-    <div className="movie-container">
+    <div id="movie-container" className="movie-container">
       <iframe
         id="myVideo"
         width="560"

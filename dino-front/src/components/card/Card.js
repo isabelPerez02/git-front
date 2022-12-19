@@ -1,16 +1,28 @@
 import { Link } from "react-router-dom";
 import "./Card.css";
+import { useNavigate } from 'react-router-dom';
 
-export const Card = ({ id, name, synopsis, description, image, staffList }) => {
+
+
+
+export const Card = ({ id, name, synopsis, description, image, staffList,backgroundURL }) => {
+  
+  const navigate = useNavigate();
+    const handleClick = () => navigate(`/movie/${id}`);
+
+
   return (
-    <div className="card cl-sm-6 col-md-4 cl-lg-4 col-xl-3">
-      <img src={image} className="card-img-top" alt="imagen no encontrada" />
-      <div className="card-body">
-        <h5 className="card-title">{name}</h5>
+    <div className="card" onClick={handleClick}
+    style={{ backgroundImage: `linear-gradient(to top, #0000009d, #54545400),url(${image})` }}>
 
-        <Link className="btn btn-primary" to={`/movie/${id}`}>
+     {/*  <img src={image} className="card-img-top" alt="imagen no encontrada" /> */}
+      <div className="card-body">
+        <div className="description">{synopsis}</div>
+        <h5 className="card-title">{name}</h5>
+        
+        {/* <Link className="btn btn-primary" to={`/movie/${id}`}>
           Ver
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

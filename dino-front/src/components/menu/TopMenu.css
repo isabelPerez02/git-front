@@ -74,3 +74,56 @@
     display: block;
   }
   */
+
+#navbar-dino.navbar-dino{
+
+    background-color: #ffffffc7 !important;
+    border-bottom: 1px solid #E2E2E2;
+    backdrop-filter: blur(5px);
+  }
+
+  @media only screen and (min-width: 992px) {
+
+ #navbar-dino.navbar-dino{
+  
+    position: fixed;
+    top: 0;
+    z-index: 999999;
+    left: 0;
+    min-width: 100vw;
+    
+  }
+}
+
+  #userInitial{
+    color: #ffffff;
+    background-color: #DE3F54;
+    width: 26px;
+    height: 26px;
+    border-radius: 100px;
+    margin-right: 12px;
+  }
+  #userInitial .initial{
+   /*  transform: translateY(5px); */
+
+  }
+
+  #userContainer{
+    display: flex;
+    flex-flow: row;
+    align-items: flex-end;
+  }
+#logout{
+  display: none;
+}
+
+@media only screen and (max-width: 991px) {
+  #userContainer{
+    display: none;
+    
+  }
+  #logout{
+    display: block;
+  }
+  
+}
