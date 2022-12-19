@@ -1,0 +1,33 @@
+#movies-container {
+    margin-bottom: 36px;
+    
+  }
+  
+  #movies-container .title {
+    font-size: 20px !important;
+    font-weight: 500;
+    text-align: left;
+    margin-bottom: 24px;
+  }
+  
+
+  #movies-container .cards-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+  }
+  @media only screen and (max-width: 992px) {
+    #movies-container .cards-container{
+  
+      grid-template-columns: 1fr 1fr  ;
+      gap: 16px;
+    }
+  }
+
+  @media only screen and (max-width: 575px) {
+    #movies-container .cards-container{
+  
+      grid-template-columns: 1fr  ;
+      gap: 16px;
+    }
+  }

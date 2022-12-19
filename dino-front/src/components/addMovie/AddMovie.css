@@ -1,0 +1,39 @@
+#addMovieContainer{
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+}
+
+#addMovieContainer .title-container{
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 36px;
+}
+
+hr{
+    margin-bottom: 324px;
+    padding-bottom: 24px;
+}
+
+#addMovieContainer .title{
+    font-size: 28px;
+
+    }
+
+#addMovieContainer .btn.btn-primary{
+background-color: #DE3F54;   
+border: none;
+}
+
+.inputLabel{
+text-align: left;
+width: 100%;
+}
+
+.productionSection{
+    font-size: 20px !important;
+    font-weight: 500;
+    text-align: left;
+    margin-bottom: 24px;
+}

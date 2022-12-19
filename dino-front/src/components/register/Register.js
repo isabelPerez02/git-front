@@ -1,8 +1,10 @@
+import "./Register.css";
+
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
-import { API_URL } from "../../util/Util";
+import { API_URL, showMessage } from "../../util/Util";
 
 export const Register = () => {
   const [formData, setFormData] = useState({
@@ -36,18 +38,25 @@ export const Register = () => {
         "Content-type": "application/json",
       },
     };
-    let response = await fetch(API_URL + "client", requestData);
+     let response = await fetch(API_URL + "client", requestData);
     response = await response.json();
+    if(!response.satus){
+      showMessage("Error", response.message, "error", "Reintentar");
+    }
+
+
     return response;
   };
+   
+
 
   return (
-    <div className="container">
+    <div id="signup-container" className="container">
       <Form onSubmit={handlesSubmit}>
         <Form.Group className="mb-3" controlId="formBasicName">
           <Form.Label>Nombres</Form.Label>
           <Form.Control
-            type="txt"
+            type="text"
             placeholder="Nombres"
             name="name"
             onChange={handleChange}
@@ -110,7 +119,7 @@ export const Register = () => {
           <Form.Check type="checkbox" label="Check me out" />
         </Form.Group>
 
-        <Button variant="primary" type="submit">
+        <Button className="primary" variant="primary" type="submit">
           Submit
         </Button>
       </Form>

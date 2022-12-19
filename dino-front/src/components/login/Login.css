@@ -1,0 +1,12 @@
+#login-container{
+    padding-top: 10vh;
+}
+
+.logo{
+    margin-bottom: 24px;
+}
+
+.primary{
+    background-color: #DE3F54 !important; 
+    border: none !important;
+}
