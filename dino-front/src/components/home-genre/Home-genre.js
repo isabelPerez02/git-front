@@ -9,9 +9,9 @@ export const HomeGenre = () => {
   const [genres, setGenres] = useState([]);
 
   useEffect(() => {
-    //console.log("Hola");
+
     getGenres();
-    //getMoviesAsync();
+
   }, []);
 
   const getGenres = () => {
@@ -19,6 +19,7 @@ export const HomeGenre = () => {
       .then((response) => response.json())
       .then((response) => {
         setGenres(response);
+       
       });
   };
   //    const navigate = useNavigate();
@@ -30,7 +31,7 @@ export const HomeGenre = () => {
       <div className="genres">
       {genres.map((genre, idx) => (
         //Temp
-        <Link key={idx} className="btn btn-primary" to={genre.id}>
+        <Link key={idx} className="btn btn-primary" to={`/category/${genre.name}`}>
             {genre.name}
         </Link>
       )) }

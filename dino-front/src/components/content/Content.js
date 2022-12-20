@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { API_URL } from "../../util/Util";
 import { HomeGenre } from "../home-genre/Home-genre";
 import { MoviesList } from "../moviesList/MoviesList";
+import { MyList } from '../myList/MyList';
+
 
 export const Content = () => {
   const [movies, setMovies] = useState([]);
@@ -12,16 +14,16 @@ export const Content = () => {
   const [recBackground,setRecBackground] = useState("");
 
   useEffect(() => {
-    //console.log("Hola");
+   
     getMovies();
-    //getMoviesAsync();
+
   }, []);
 
   const getMovies = () => {
     fetch(API_URL + "movie")
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
+     
         setMovies(response);
         const recIndex = Math.floor(Math.random() * (response.length)); 
         setMovie(response[recIndex])
@@ -46,28 +48,12 @@ export const Content = () => {
     
     <MoviesList movies={movies} title={"Peliculas"} />
 
-    <div id="list"> </div>
-    <MoviesList  movies={movies} title={"Mi Lista"} />
-     
-{/* 
-      {movies.map((movie, idx) => (
-        <Card
-          key={idx}
-          name={movie.name}
-          synopsis={movie.synopsis}
-          description={
-            !movie.description ? "No hay descripción" : movie.description
-          }
-          staff={movie.staffList}
-          image={
-            !movie.imageLink
-              ? "https://picsum.photos/seed/picsum/200/300"
-              : movie.imageLink
-          }
-          id={movie.id}
-        />
-      ))} */}
+
+    <MyList/>
     </div>
+
+    
+
   );
 };
 

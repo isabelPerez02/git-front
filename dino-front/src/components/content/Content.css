@@ -3,16 +3,19 @@
 }
 
 .movies-container{
-    padding-top: 10vh;
+    padding-top: 88px;
     padding-left: 33px;
     padding-right: 33px;
     padding-bottom: 75px;
 }
 
+.movies-container #my-list-container{
+    padding-top: 0 !important;
+}
 
 @media only screen and (max-width: 575px) {
     .movies-container{
-        padding-top: 20px;
+        padding-top: 24px;
         padding-left: 33px;
         padding-right: 33px;
         padding-bottom: 75px;
@@ -20,3 +23,11 @@
     }
     
   }
+
+
+  @media only screen and (max-width: 991px) {
+    .movies-container {
+        padding-top: 24px !important;
+    }
+
+}

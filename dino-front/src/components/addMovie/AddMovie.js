@@ -50,7 +50,10 @@ export const AddMovie = ({
     };
      let response = await fetch(API_URL + "movie", requestData);
     response = await response.json();
-    if(response.satus!==200){
+    if(response.status==true){
+      showMessage("Pelicula Agregada", response.message, "success", "OK");
+    }
+    else if(response.status==false){
       showMessage("Error", response.message, "error", "Reintentar");
     }
 
@@ -84,7 +87,7 @@ export const AddMovie = ({
   };
 
   const handleSelectGenre = (event) => {
-    console.log(event.target.value);
+
     let result = genres.filter((obj) => {
       return obj.id === event.target.value;
     });
@@ -96,21 +99,28 @@ export const AddMovie = ({
   };
 
   useEffect(() => {
-    //console.log("Hola");
+   
     getGenres();
     const items = JSON.parse(localStorage.getItem("authData"));
     if (items) {
       setToken(items.token)
    
     }
-    //getMoviesAsync();
+
   }, []);
 
-  const submit = (e) => {
+const err = (msg) =>{
+  showMessage("Error", msg, "error", "Reintentar");
+}
 
+  const submit = (e) => {
+    let test = [{ id: "", name: "", description: "", ageMinium: 0 }];
 
     if(movieInputField.name===""){
-        showMessage("Error", "Ingrese el nombre de la pelicula", "error", "Reintentar");
+       err("Ingrese el nombre de la pelicula")
+    }
+    else if(JSON.stringify(genre)===JSON.stringify(test)){
+      err("Seleccione por lo menos una categoria")
     }
     else{
         let temp = movieInputField;
@@ -122,8 +132,9 @@ export const AddMovie = ({
         setMovieInputField(temp);
     
         e.preventDefault();
-        sendPostRequest(movieInputField);
-    }
+       sendPostRequest(movieInputField); 
+    
+    } 
 
     
   };
@@ -132,11 +143,11 @@ export const AddMovie = ({
     <div id="addMovieContainer" className="container">
       <Form>
         <div className="title-container">
-          <h1 className="title">Agergar Pelicula</h1>
+          <h1 className="title">Agregar Pelicula</h1>
           <div>
-            <button onClick={submit} className="btn btn-primary">
+            <div onClick={submit} className="btn btn-primary">
               Guardar Pelicula
-            </button>
+            </div>
           </div>
         </div>
 

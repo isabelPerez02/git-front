@@ -1,5 +1,5 @@
 #login-container{
-    padding-top: 10vh;
+    padding-top: 88px;
 }
 
 .logo{
@@ -9,4 +9,15 @@
 .primary{
     background-color: #DE3F54 !important; 
     border: none !important;
+}
+
+.linkDino{
+
+
+    color: #DE3F54;
+    text-decoration: none;
+}
+
+.loginForm{
+    margin-bottom: 24px;
 }

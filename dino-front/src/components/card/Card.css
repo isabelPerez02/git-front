@@ -5,7 +5,7 @@
    background-repeat: no-repeat;
    background-size: cover;
    cursor: pointer;
-   
+   border-radius: 8px !important;
   }
 
   .card-body{
@@ -13,6 +13,7 @@
     flex-flow: column;
     justify-content: space-between;
     align-items: stretch;
+    border-radius: 8px !important;
   }
   
 
@@ -34,18 +35,7 @@
     color: #ffffff00;
   }
 
-  @media only screen and (hover: none) {
-    .card-body .description{
-      transition: color 250ms linear;
-      color: #ffffff;
-    }
-
-    .card-body{
-      background-color: #00000087;
-    }
   
-    
-  }
 
   .card:hover .card-body{
     background-color: #00000087;
@@ -84,3 +74,15 @@
     margin-bottom: 15 px;
   }
 
+  @media only screen and (hover: none) {
+    .card-body .description{
+      transition: color 250ms linear;
+      color: #ffffff;
+    }
+
+    .card-body{
+      background-color: #00000087;
+    }
+  
+    
+  }
