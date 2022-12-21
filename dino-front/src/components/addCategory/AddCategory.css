@@ -1,0 +1,34 @@
+#add-category-container {
+    padding-top: 88px !important;
+}
+
+.btn.btn-primary {
+    background-color: #DE3F54;
+    border: none;
+}
+
+.inputLabel {
+    text-align: left;
+    width: 100%;
+}
+
+.title-container {
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 36px;
+}
+
+.title{
+    font-size: 28px;
+
+    }
+
+
+@media only screen and (max-width: 991px) {
+    #add-category-container {
+        padding-top: 24px !important;
+    }
+
+}

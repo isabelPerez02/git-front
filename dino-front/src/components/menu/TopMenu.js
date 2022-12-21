@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/img/logo.svg";
 
+
 import "./TopMenu.css";
 
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import Dropdown from 'react-bootstrap/Dropdown';
+
 import Container from "react-bootstrap/Container";
 import { API_URL, isAuth } from "../../util/Util";
 
@@ -65,6 +68,14 @@ export const TopMenu = () => {
                   Inicio
                 </Nav.Link>
                 <NavDropdown title="Categorias" id="collasible-nav-dropdown">
+                <NavDropdown.Item
+                      as={Link}
+                
+                      to={`/category/`}
+                    >
+                      Todas las Categorias
+                    </NavDropdown.Item>
+                    <hr/>
                   {categories.map((item, idx) => (
                     <NavDropdown.Item
                       as={Link}
@@ -73,15 +84,22 @@ export const TopMenu = () => {
                     >
                       {item.name}
                     </NavDropdown.Item>
+
                   ))}
+                  <hr/>
+                   <NavDropdown.Item
+                      as={Link}
+                
+                      to={`/category/add`}
+                    >
+                      Agregar Categoria
+                    </NavDropdown.Item>
                 </NavDropdown>
 
-                <Nav.Link as={Link} to={`#list`}>
+                <Nav.Link as={Link} to={`/list`}>
                   Mi Lista
                 </Nav.Link>
-                <Nav.Link as={Link} to={`/scores/`}>
-                  Mis calificados
-                </Nav.Link>
+             
                 <Nav.Link as={Link} to={`/movie/add`}>
                   Agregar Pelicula
                 </Nav.Link>

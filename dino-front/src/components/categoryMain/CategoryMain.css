@@ -1,0 +1,10 @@
+#category-main-container{
+    padding-top: 88px !important;
+}
+
+@media only screen and (max-width: 991px) {
+    #category-main-container{
+        padding-top: 24px !important;
+    }
+    
+  }

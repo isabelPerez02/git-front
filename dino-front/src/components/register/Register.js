@@ -27,7 +27,7 @@ export const Register = () => {
   const handlesSubmit = async (event) => {
     event.preventDefault();
     const response = await sendClientApi();
-    console.log(response);
+
   };
 
   const sendClientApi = async () => {
@@ -40,7 +40,10 @@ export const Register = () => {
     };
      let response = await fetch(API_URL + "client", requestData);
     response = await response.json();
-    if(!response.satus){
+    if(response.status==true){
+      showMessage("Usuario Creado", response.message, "success", "OK");
+    }
+    else if(response.status==false){
       showMessage("Error", response.message, "error", "Reintentar");
     }
 

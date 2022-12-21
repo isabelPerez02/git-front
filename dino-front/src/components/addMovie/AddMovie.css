@@ -1,6 +1,6 @@
 #addMovieContainer{
-    padding-top: 10vh;
-    padding-bottom: 10vh;
+    padding-top: 88px;
+    padding-bottom: 88px;
 }
 
 #addMovieContainer .title-container{
@@ -36,4 +36,12 @@ width: 100%;
     font-weight: 500;
     text-align: left;
     margin-bottom: 24px;
+}
+
+
+@media only screen and (max-width: 991px) {
+    #addMovieContainer {
+        padding-top: 24px !important;
+    }
+
 }

@@ -12,6 +12,10 @@ export const Movie = () => {
   const [scoreId, setScoreId] = useState("");
   const [isActive, setIsActive] = useState(false);
 
+
+  let auth = JSON.parse(localStorage.getItem("authData"))
+ 
+
   useEffect(() => {
     setMovieId(params.id);
     getMovie();
@@ -97,7 +101,32 @@ export const Movie = () => {
     const { value } = event.target;
     await sendScoreApi(value);
     setScoreSelected(value);
-    //console.log(`value`, value);
+
+  };
+
+
+
+  const sendPostRequest = async (formData) => {
+    const requestData = {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-type": "application/json",
+        "Authorization": `Bearer ${auth.token}`
+      },
+    };
+     let response = await fetch(API_URL + "playList", requestData);
+    response = await response.json();
+
+    if(response.status!=true){
+      showMessage("Error", response.message, "error", "Reintentar");
+    }
+    else if(response.status==true){
+      showMessage("Success", response.message, "success", "Ok");
+    }
+
+
+    return response;
   };
 
   const handleAddList = () => {
@@ -107,6 +136,20 @@ export const Movie = () => {
     // despues el usuarios
     //deberia guardar en una entidad playliost -> id cliente, id pelicula,la fecha
     // mensaje indicandole al usuario que ya se agregó, state, -> 1 activo, ->2 oculto
+ 
+    let authData = JSON.parse(localStorage.getItem("authData"))
+ 
+
+    let obj = {
+      name:authData.name,
+      client:{
+        id:authData.id
+      },
+      movies:[movie]
+    }
+
+
+    sendPostRequest(obj);
   };
 
   return (
@@ -161,7 +204,7 @@ export const Movie = () => {
               onClick={handleAddList}
               className={isActive ? "active" : ""}
             >
-              Agregar a mis lista
+              Agregar a mi lista
             </button>
           </div>
         </div>

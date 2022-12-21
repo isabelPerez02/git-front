@@ -36,7 +36,7 @@ export const Login = () => {
   const handlesSubmit = async (event) => {
     event.preventDefault();
     const response = await sendAuthApi();
-    console.log(response);
+ 
     if (response && response.token && response.token !== "") {
       localStorage.setItem("authData", JSON.stringify(response));
       navigate("/movies");
@@ -61,7 +61,7 @@ export const Login = () => {
   return (
     <div id='login-container' className="row justify-content-center">
       <div className="col-8 col-sm-8 col-md-4 col-lg-3">
-        <Form onSubmit={handlesSubmit}>
+        <Form className="loginForm" onSubmit={handlesSubmit}>
           <img class="logo" src={image} alt="logo"></img>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email</Form.Label>
@@ -90,7 +90,7 @@ export const Login = () => {
             Ingresar
           </Button>
         </Form>
-        <Link to="/register">Registrarse</Link>
+        <Link className="linkDino" to="/register">Registrarse</Link>
       </div>
     </div>
   );
